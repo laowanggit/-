@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <!--
+            配置链接数据库的内容driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql:///pet_hospital"
+                        userId="root"
+                        password="admin"
+                        connectionURL="jdbc:mysql://10.9.21.40:3306/shiyudb"
+                        connectionURL="jdbc:mysql:///shiyudb"
+        -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+
+                        connectionURL="jdbc:mysql:///shiyudb"
+                        userId="root"
+                        password="123456">
+        </jdbcConnection>
+
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!--实体类位置-->
+        <javaModelGenerator targetPackage="com.shiyu.demo.entity" targetProject="./src/main/java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+        <!--mapper映射文件位置-->
+        <sqlMapGenerator targetPackage="mapper"  targetProject="./src/main/resources">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+        <!--mapper接口位置-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.shiyu.demo.mapper"
+                             targetProject="./src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <!-- 用户权限角色 -->
+        <table tableName="user_log" ></table>
+        <table tableName="user_save" ></table>
+        <table tableName="user_indent" ></table>
+        <table tableName="user_comment" ></table>
+        <table tableName="shop_ticket"></table>
+        <table tableName="shop_photo"></table>
+        <table tableName="shop_log"></table>
+        <table tableName="shop_info"></table>
+        <table tableName="shop_environment"></table>
+        <table tableName="role_root"></table>
+        <table tableName="role"></table>
+        <table tableName="post_img"></table>
+        <table tableName="post_comment"></table>
+        <table tableName="menu_info"></table>
+        <table tableName="menu_img"></table>
+        <table tableName="community_post"></table>
+        <table tableName="community_img"></table>
+        <table tableName="comment"></table>
+        <table tableName="auth_code"></table>
+
+
+
+
+
+
+
+    </context>
+</generatorConfiguration>

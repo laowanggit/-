@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+</head>
+<body>
+<form action="shopRegist.html" method="post">
+    手机号：<input name="shopphone" id="mobile" placeholder="手机号">
+    <input type="button" value="获取验证码" id="codeBtn"/>
+    验证码：<input type="text" name="code"/>
+    密码:<input name="shoppwd" id="mobile" placeholder="密码">
+    确认密码:<input name="shopNpwd" id="mobile" placeholder="确认密码">
+    <input type="submit" value="注册">${message}
+</form>
+<script type="text/javascript">
+    var time = 60;
+    var interval;
+    $(function () {
+        $("#codeBtn").click(function () {
+            //验证手机号格式略
+            var mobile = $("#mobile").val();
+            var reg = /^1[3-9]\d{9}$/;
+            if (!reg.test(mobile)) {
+                alert("请输入正确的手机号");
+                return
+            }
+            interval=setInterval("changeTime()",1000);//设置禁用时间
+            $("#codeBtn").prop("disabled", true);//禁用按钮
+
+            $.ajax({
+                url: "code1.html",
+                data: "shopphone=" + mobile,
+                method: "post",
+                success: function (data) {
+                    if(data.status==true){
+
+                    }else{
+                        alert(data.message);
+                    }
+                }
+            })
+        });
+    })
+
+    function changeTime() {
+        time--;
+        if (time <= 0) {
+            $("#codeBtn").prop("disabled", false);
+            $("#codeBtn").val("点击获取验证码");
+            time = 60;
+            clearInterval(interval);//清除定时
+        } else {
+            $("#codeBtn").val(time + "s后再次发送");
+        }
+    }
+</script>
+</body>
+</html>
